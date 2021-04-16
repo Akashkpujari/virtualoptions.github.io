@@ -1,0 +1,125 @@
+<html>
+<style>
+
+body
+{ 
+  background-image:url(pic.jpg);
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.login
+{
+	width:360px;
+	padding:10px 0 0;
+	margin: auto;
+}
+.form
+{
+	position: relative;
+	z-index: 1;
+	background:rgba(100,100,100,0.5);
+	max-width: 360;
+	margin: 0 0 100px;
+	
+	text-align: center;
+}
+.form input
+{
+	font-family:"Roboto",sans-serif;
+	outline: 1;
+	background:white;
+	width: 100%;
+	border:0;
+	padding: 15px;
+	margin: 25 25 0 0;
+	padding-top:10px;
+	padding-right: 30px;
+	padding-left: 30px;
+	padding-bottom: 10px;
+	box-sizing: border-box;
+	font-size: 15px;
+
+}
+.form button
+{
+   font-family: "Roboto",sans-serif;
+   outline: 1;
+   background:palegreen;
+   width:100%;
+   border:0;
+   padding: 15px;
+   margin:25 25 0 0;
+   color: black;
+   font-size: 15px;
+   cursor: pointer;
+
+}
+.form button:hover,.form button:active
+{
+	background:rgba(40,100,40,0.7);
+}
+.register1{
+	display:none;
+}
+
+</style>
+<head>
+	<h1 align="center" style="color: white;padding:20px;background:rgba(10,10,100,0.2);">OPTIONS TRADING</h1>
+	<h3 align="center"style="color: white;text-transform: uppercase;padding:10px;background:rgba(100,10,100,0.2)" >learn before you trade or learn after you loose</h3>
+</head>
+<body>
+	<div class="login">
+    <div class="form">
+    	<div class="register1" id="register1">
+    	<form id="register">
+    		<input type="text" placeholder="username" id="name"/>
+    		<input type="password" placeholder="password" id="password"/>
+    		<input type="text" placeholder="full name"/>
+    		<br>
+    		<button onclick="tregister()">
+    			SUBMIT
+    		</button>
+    		<p style="font-size: 20px;font-family:sans-serif; "class="message">already a user?<a style="color:white;"onclick="tregister()"href="#login1">Login</a></p>
+    	</div>
+    	</form>
+    	<div class="login1" id="login1">
+    <form  id="login">
+    		<input type="text" placeholder="username"/>
+    		<input type="password" placeholder="password"/>
+    		<br>
+    	</form>
+    		<button onclick="document.location='options.html'" target="_top">
+    			LOGIN
+    		</button>
+    		<p style="font-size: 20px;font-family:sans-serif; "class="message">not registered?<a style="color:white;" onclick="tlogin()" href="#register1">register</a></p>
+    	</div>
+    </div>
+</div>
+
+</body>
+<script>
+	var i=0;
+	function tlogin()
+	{
+		document.getElementById("register1").classList.toggle("register1");
+		var x=document.getElementById("login1");
+		x.style.display="none";
+		i++;
+	}
+	function tregister()
+	{
+		
+		document.getElementById("register1").classList.toggle("register1");
+		var x=document.getElementById("login1");
+		x.style.display="initial";
+	}
+	var name=new Array[50];
+	var password=new Array[50];
+     var name1=document.getElementById("name").value;
+     name.push(name1);
+     document.write(name1);
+	
+</script>
+</body></html>

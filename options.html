@@ -1,0 +1,324 @@
+<html>
+<style>
+    #funds
+    {
+    	position:relative;
+		top:-570;
+		left:100;
+		background-color:tomato;
+		width: 100px;
+		height: 50px;
+    }
+	.tradetable
+	{
+		visibility: hidden;
+	}
+	#logout
+	{   position:relative;
+		top:-450;
+		left:580;
+		background-color:palegreen;
+		width: 100px;
+		height: 50px;
+		cursor: pointer;
+
+    }
+    #nseoption
+    {
+    	 position: relative;
+		top:-350;
+		left:1100;
+		background-color:palegreen;
+		width: 200px;
+		height: 50px;
+		cursor: pointer;
+
+    }
+    #exittrade
+    {
+    	 position: relative;
+		top:-50;
+		left: 300;
+		background-color:palegreen;
+		width: 150px;
+		height: 50px;
+		cursor: pointer;
+
+    }
+     #entertrade
+    {
+    	 position: relative;
+		margin:20 0 0 0;
+		background-color:palegreen;
+		width:330;
+		height:40;
+		font-size: 150%;
+		cursor: pointer;
+    }
+    #niftychart
+    {
+    	 position: relative;
+		top:-250;
+		left:900;
+		background-color:palegreen;
+		width: 200px;
+		height: 50px;
+		cursor: pointer;
+
+    }#bankniftychart
+    {
+    	 position: relative;
+		top:-150;
+		left:700;
+		background-color:palegreen;
+		width: 200px;
+		height: 50px;
+		cursor: pointer;
+
+    }
+	#logout:hover,#nseoption:hover,#entertrade:hover,#niftychart:hover,#banknifty:hover,#exittrade:hover
+	{
+		opacity: 0.5;
+	}
+	body
+	{ 
+    background-image:url(pic.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    }	
+	.form
+	{
+    position: relative;
+	z-index: 1;
+	background:rgba(100,100,100,0.5);
+	max-width: 360;
+	margin: 0 500 100;
+	text-align: center;
+   }
+	
+ .show
+	{
+		visibility: hidden;
+		margin :-500 0 0 0; 
+		position: relative;
+	    z-index: 1;
+	    background:rgba(100,100,100,0.5);
+	    max-width: 360;
+	    margin: 0 100 0 20;
+	    text-align: center;
+	    box-sizing: border-box;
+	    font-size: 15px;
+   } 
+	th
+	{
+		border: 1px solid;
+		background-color:tomato;
+		
+	}
+     td
+	{
+       background-color:white;
+       font size: 120%;
+       text-align: center;
+       border: 1px black;
+
+     }
+	label
+	{
+		background-color:black;
+		border:white;
+		color:white;
+		font-size:200%;
+	}
+	select
+	{   font-size: 150%;
+		border: white;
+	}
+	
+	option
+	{
+		font-color: black;
+		border: black;
+
+
+	}
+	select
+	{
+		font-family:"Roboto",sans-serif;
+	outline: 1;
+	background:white;
+	width: 100%;
+	border:0;
+	padding: 15px;
+	margin: 15 25 0 0;
+	padding-top:20px;
+	padding-right: 30px;
+	padding-left: 30px;
+	padding-bottom: 10px;
+	box-sizing: border-box;
+	font-size: 15px;
+	}
+	p
+	{
+		margin:-100 0 0 0;
+		background:rgba(0 0 100 0.2);
+		color: white;
+	}
+	#buyprice,#lots
+	{
+		font-size: 168%;
+		border: white;
+		font-color: black;
+		border: black;
+		margin:30 0 0 0;
+
+	}
+	#balance
+	{
+		
+	}
+</style>
+
+
+
+
+
+
+
+
+<body>
+	<h1 style="text-align:center;padding:20px;color: white;opacity: 0.8">
+		VIRTUAL OPTION TRADING
+	</h1>
+	<input type="number" id="balance" placeholder="0"></input>
+	<form class="form" id="form">
+ <select name="index" id="index" onchange="showindex()">
+    <option  selected="selected">SELECT INDEX</option>
+  </select>
+  <br><br>
+   <select name="expiry" id="expiry" onchange="showexpiry()">
+    <option value="expiry" selected="selected">SELECT EXPIRY DATE</option>
+  </select>
+  <br><br>
+ <select name="strike" id="strike" onchange="showstrike()">
+    <option value="option" selected="selected">SELECT STRIKE PRICE</option>
+  </select>
+  <input id="buyprice" type="number" value="entryprice" placeholder="enrty price" onchange="showentryprice()">
+  <br><br>
+  <input id="lots" type="number" value="lots" placeholder="position size" onchange="showlots()">
+  <br><br>
+  <button id="entertrade"type="button" value="Submit" onclick="showtradeinfo()">ENTER TRADE</button>
+</form>
+<div class="show" id="show">
+<p> SELECTED INDEX IS       :<input type="text" id="indexname"></p>
+<p> SELECTED STRIKE PRICE IS:<input type="text" id="strikeprice"></p>
+<p> EXPIRY DATE:<input type="text" id="expirydate"></p>
+<p>ENTRY PRICE:<input  id="entryprice"></p>
+<p>POSITION SIZE:<input  id="lotnumber"></p>
+<p>EXIT PRICE:<input id="exitprice"></p>    
+<button id="exittrade" onclick="exittrade()">EXIT TRADE</button>
+</div>
+<button id="nseoption" onclick="document.location='https://www.nseindia.com/option-chain'" formtarget="_blank">NSE OPTION CHAIN</button>
+<button id="niftychart" onclick="document.location='https://in.tradingview.com/chart/?symbol=NSE%3ANIFTY'" formtarget="_blank">NIFTY LIVE CHART</button>
+<button id="bankniftychart" onclick="document.location='https://in.tradingview.com/chart/?symbol=NSE%3BANKNIFTY'" formtarget="_blank">BANKNIFTY LIVE CHART</button>
+
+<button  id="logout" onclick="document.location='login.html'">LOGOUT</button>
+ <table id="funds">
+ 	<tr>
+<th>PROFIT/LOSS</th>
+</tr>
+
+
+</table>
+
+
+</button>
+
+</body>
+</html>
+</html>
+
+
+
+
+
+
+
+<script>
+	var index=document.getElementById("index"),
+	    arr=["NIFTY","BANKNIFTY"];
+	     for(var i=0;i<arr.length;i++)
+	     {
+	     	var option =document.createElement("OPTION"),txt=document.createTextNode(arr[i]);
+	     	option.appendChild(txt);
+	     	index.insertBefore(option,index.lastChild);
+	     }
+	     var expiry=document.getElementById("expiry"),
+	     arr=["22 APRIL","29 APRIL","6 MAY","13 MAY","20 MAY","27 MAY"];
+	     for(var i=0;i<arr.length;i++)
+	     {
+	     	var option =document.createElement("OPTION"),txt=document.createTextNode(arr[i]);
+	     	option.appendChild(txt);
+	     	expiry.insertBefore(option,expiry.lastChild);
+	     }
+	     var strike=document.getElementById("strike"),
+	     arr1 =["14000 PE","14100 PE","14300 PE","15400 PE","14500 PE","14600 PE","14700 PE","14800 PE","14900 PE","15000 PE","14000 CE","14100 CE","14300 CE","15400 CE","14500 CE","14600 CE","14700 CE","14800 CE","14900 CE","15000 CE"],
+	     arr2 =["31000 PE","31200 PE","31400 PE","31600 PE","31800 PE","32000 PE","32200 PE","32400 PE","32600 PE","32800 PE","31000 CE","31200 CE","31400 CE","31600 CE","31800 CE","32000 CE","32200 CE","32400 CE","32600 CE","32800 CE"];
+	         for(var i=0;i<arr1.length;i++)
+	         {
+	     	    var option =document.createElement("OPTION"),txt=document.createTextNode(arr1[i]);
+	     	    option.appendChild(txt);
+	     	    strike.insertBefore(option,strike.lastChild);
+	         }
+	       
+           
+          	{
+	       	 for(var i=0;i<arr2.length;i++)
+	         {
+	     	    var option =document.createElement("OPTION"),txt=document.createTextNode(arr2[i]);
+	     	    option.appendChild(txt);
+	     	    strike.insertBefore(option,strike.lastChild);
+	         }
+	        }
+
+         function showstrike()
+         {
+         	var s=document.getElementById("strike");
+         	document.getElementById("strikeprice").value=s.options[s.selectedIndex].text;
+
+         }
+         function showexpiry()
+         {
+         	var e=document.getElementById("expiry");
+         	document.getElementById("expirydate").value=e.options[e.selectedIndex].text;
+
+         }
+         function showindex()
+         {
+         	var i=document.getElementById("index");
+         	document.getElementById("indexname").value=i.options[i.selectedIndex].text;
+
+         }
+         function showentryprice()
+         {
+         	document.getElementById("entryprice").value=document.getElementById("buyprice").value;
+         }
+         function showtradeinfo() 
+         {
+ 			document.getElementById("show").classList.toggle("show");
+ 		 }
+ 		 function exittrade()
+ 		 {
+ 		 	document.getElementById("balance").value+=(document.getElementById("exitprice").value-document.getElementById("buyprice").value)*(document.getElementById("lots").value);
+ 		 
+ 		 }
+ 		function showlots()
+ 		 {
+ 		 	
+         	document.getElementById("lotnumber").value=document.getElementById("lots").value;
+ 		 }
+ 		  
+ 		
+</script>
